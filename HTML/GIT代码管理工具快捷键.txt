@@ -1,0 +1,494 @@
+$cd Desktop/              创建创库
+$mkdir gitname            使用mkdir命令创建仓库
+$cd gitname               进入该仓库目录
+$git init                 将该git目录变成Git可以管理的仓库
+$git add readme.txt       把文件添加到仓库
+$git commit -m            把文件提交到仓库(后面是log信息)
+$git status               使用git status查看状态(文件是否有修改）
+$git diff                 查看修改前后的区别
+$git log                  使用git log查看历史日志
+$git reset —hard HEAD^   上一个版本使用
+$git reset                版本回退
+$git reset —hard 2044be7c回退到指定版本
+$git reflog               查看你执行过的命令记录
+$git push origin master   推送到远程仓库   
+$git push -u origin master第一次推送远程创库  
+
+mongod --dbpath E:\mongo\data              启动
+mongo                                      链接数据库
+show dbs 
+use   数据库名称                                列出所有数据库
+db.数据库名称.insert({“...”:”...”})    使用数据库、创建数据库
+show collections                           显示当前的数据集合
+db.dropDatabase()                          删除数据库，删除当前所在的数据库
+db.数据库名称.find()                       查询所有记录
+db.userInfo.distinct("name")       查询去掉后的当前聚集集合中的某列的重复数据
+db.数据库名称.update({"name":"小明"},{$set:{"age":16}}) 修改数据
+db.数据库名称.remove                       删除数据
+
+http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1
+http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid=499
+
+
+
+
+参考教程： 
+http://www.w3cplus.com/sassguide/syntax.html
+http://javaloverlover.iteye.com/blog/1603314 
+http://www.ruanyifeng.com/blog/2012/06/sass.html 
+www.npmjs.com 
+npm.taobao.org   
+https://docs.mongodb.com/getting-started/node/query/  
+
+https://www.npmjs.com/package/formidable                 插件库
+
+http://www.swiper.com.cn/                                移动端插件
+http://www.swiper.com.cn/api/scrollbar/2015/0204/183.html  
+
+https://github.com/yanhaijing/zepto.fullpage/issues/9    git插件库
+
+http://www.wh50.com/case/index.html
+
+http://site.w3cub.com/
+http://blog.csdn.net/zgrkaka/article/details/53897202
+
+
+
+https://www.hcharts.cn/            图型插件
+http://echarts.baidu.com/          图型插件
+
+http://element.eleme.io/#/			vue组件
+http://mint-ui.github.io/docs
+http://www.cnblogs.com/opendigg/p/6513510.html
+npm install --global vue-cli
+vue init webpack-simple
+npm install
+npm run dev
+
+http://javascript.ruanyifeng.com/nodejs/module.html    CommonJS规范
+
+https://ant.design/index-cn        react组件
+
+
+http://www.cnblogs.com/Yoko-815/p/7150638.html  掉用手机api
+http://www.html5plus.org/doc/zh_cn/camera.html
+
+http://www.ih5.cn/
+http://www.51app.com/ 微信小程序
+
+/^[0-9a-zA-Z]{6,18}$/
+/^(?=.*\d)(?=.*[a-z]).{6,11}$/
+
+
+ <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+live HTML Previewer
+为html文档提供预览功能，需要用命令或者快捷键调出，会在编辑器中新增一列，用于运行html文件。
+a. 按F1在命令框中输入：Show side preview 新增一列显示html，能边写边看到效果，实时预览。
+b. 可以在html文档中右键选择：Open in browser 在系统默认浏览器中打开，该模式下不能提供实时预览,保存时不自动刷新浏览器。
+
+https://segmentfault.com/a/1190000006697219
+
+3.5 SVG Viewer
+为SVG 文档在编辑器中提供预览。
+a. 按F1在命令框中输入：SVG
+b. 选择SVG Viewer,新增一列显示SVG运行结果。
+
+react安装脚手架工具
+https://facebook.github.io/react/docs/installation.html
+npm install -g create-react-app   /  cnpm install -g create-react-app
+
+创建项目
+create-react-app 项目名称
+
+cd  到项目里面
+	npm start 运行项目
+
+	npm run build 生成项目
+
+
+
+
+1.react 和jq的区别？    ***  学到最后自己总结
+
+
+	reactnative      基于react语法开发 混合app的
+ 
+2.为什么要用react 写项目？   **
+
+	单页面应用 运行速度快
+
+
+
+3.React 语法基于jsx   、  javascript xml      （nodejs里面的模板ejs   jade）
+
+
+  ReactDOM.render(
+        <div>
+            <h2>你和React</h2>
+            <ul>
+                <li>列表1</li>
+                <li>列表1</li>
+                <li>列表1</li>
+            </ul>           
+        </div>
+        ,
+        document.getElementById('box')
+
+    )
+
+
+
+4. 模板里面渲染数据   {}
+
+
+5.定义数据
+
+es5 
+
+   getInitialState:function(){  
+        return{  
+
+            msg:'这是InitialState里面的数据',
+            name:'张三',
+            list:''
+        }
+
+    }
+
+    用这里的数据： this.state.数据名称
+es6 
+
+
+      constructor(props){
+  
+        super(props);    
+
+        this.state={
+
+            msg:'这是Life的msg',
+            name:'张三',
+            list:''
+        }    
+    }     
+
+
+    用这里的数据：this.state.数据名称
+
+
+6.定义模板
+
+
+	 render(){
+
+                return(
+                    <div>
+
+                        <h2>这是一个内容组件-{this.state.msg}--{this.state.name}</h2>
+                    </div>
+                )
+            }
+
+6.定义组件
+	
+
+	es5 
+		var Header=React.createClass({
+
+			getInitialState:function(){  
+		        return{  
+
+		            msg:'这是InitialState里面的数据',
+		            name:'张三',
+		            list:''
+		        }
+
+		    },
+
+		    render(){
+
+		    	return (
+		    		<div></div>
+		    	)
+		    }
+		})
+
+	
+es6 
+
+	 class Header extends React.Component{
+
+				constructor(props){
+
+						super(props);
+
+						//数据
+
+						this.state={
+
+							msg:'这是一个头部组件'
+						}
+
+				}
+				render(){
+
+					return (
+
+						<div></div>
+					)
+				}
+	 }
+
+	 暴露:
+
+	 export default Header;
+
+	 其他地方引入：
+
+	 import Header from './Header.js';  //引入 js
+
+7.模板里面执行方法
+
+	onClick    注意大小写  注意不要写引号  不要写()
+
+	onClick={this.run}
+
+	onChange  
+
+	传值：
+
+	onClick={this.run.bind(this,'传递的数据')}
+
+	注意：单文件组件  this的指向
+
+	单文件组件组件改变this指向  :
+
+
+		constructor(props){
+
+			super(props);
+			//数据
+			this.run=this.run.bind(this)
+		}
+
+8.获取数据 以及更改数据
+
+	获取
+	this.state.数据
+
+	更改
+
+	this.setState({
+
+		msg:'更改后的数据'
+	})
+
+9.input 框  onChange事件会传递一个事件对象
+
+
+	<input onChange={this.方法}	 />
+
+	 console.log(e);
+
+	方法(){
+
+		e.target.value
+
+	}
+
+10.ref  获取dom节点
+
+	给元素加ref属性   比如： <div ref='home'></div>	 
+
+	this.refs.home  获取dom节点
+
+11.	给模板里面的元素加属性
+
+	注意：
+
+		className 设置class
+
+		htmlFor   设置for  
+
+		style="对象"
+
+		<div>
+		   <label htmlFor="user">用户名： </label>
+		   <input type="text" id="user" placeholder="用户名" />
+		</div>
+
+	其他的以前怎么写还是怎么写  id
+
+	注意：input框 的值用   defaultValue
+
+12.父子组件传值
+
+	1.父组件给子组件传值，子组件获取父组件的数据和方法
+
+		1.父组件  调用子组件的时候传值	
+			<Header msg='这是一个数据' h={this} />
+
+		2.子组件获取父亲组件的数据
+
+			this.props.msg
+
+
+	 2.子组件给父组件传值 ，父组件获取子组件的数据和方法
+
+
+	 	1.父组件调用子组件的时候定义ref
+	 		<Header ref='header' />
+
+	 	2.this.refs.header拿到了子组件的对象。可以获取子组件的数据和方法
+
+
+13.父子给组件传值的时候 propTypes  defaultProps   ***
+
+	子组件里面通过 propTypes  可以验证父组件传递数据的合法性
+
+
+	defaultProps 父组件不给子组件传值的时候的默认值
+
+
+
+	Header.propTypes = {
+	  text: PropTypes.string   /*指定 text是字符串类型*/
+	};
+
+	//不传值的时候  给props一个默认值
+	Header.defaultProps = {
+	  username: '张三'
+	};
+
+
+14.生命周期函数
+
+	生命周期函数：
+
+       组件加载之前  加载完成    更新数据   销毁组件触发的一系列的方法就是生命周期函数
+
+	componentWillMount	请求数据
+
+	componentDidMount     dom加载    请求数据
+
+
+	https://facebook.github.io/react/docs/react-component.html
+
+15.axios请求数据
+
+	https://github.com/mzabriskie/axios
+
+	1.安装
+	2.引入   
+	3.使用
+
+	//1.cnpm install axios  --save
+
+	//2.import axios from 'axios'; 
+
+	//3.看官方文档使用
+
+
+16.创建单文件组件
+
+	https://facebook.github.io/react/docs/installation.html
+
+	1.安装脚手架 （ 项目生成工具）    只需要安装一次
+
+
+	npm install -g create-react-app    /  cnpm install -g create-react-app
+	 
+
+	2.创建项目  （可以创建）
+
+	create-react-app  项目名称
+
+	cd 项目名称
+
+	npm start 运行项目
+
+
+	例如:
+
+	create-react-app reactdemo01
+
+	cd reactdemo01  
+
+	npm start 执行项目
+
+
+	3.运行  打开项目
+
+	npm start
+
+
+	4.正式打包   **
+
+	npm run build
+
+17.路由配置    
+
+	1.比如配置react路由 以前好好的，过了一段时间不行了。找了半天发现版本问题。
+
+	2.nodejs用了最新版本  脚手架不能用了。     nodejs版本问题。
+
+
+（老版本  2.8.1  ） 
+https://github.com/ReactTraining/react-router/tree/v3/docs
+https://github.com/ReactTraining/react-router/blob/v3/docs/guides/RouteConfiguration.md
+
+	1.安装react-router 
+
+		注意要指定版本安装
+
+		npm info react-router  查看路由的版本
+
+		cnpm install react-router@2.8.1  --save    老版本的稳定版本
+
+	2.引入import { Router, Route, Link } from 'react-router'    
+
+	(index.js  App.js)
+
+	3.定义组件  首页 Home组件  新闻 News组件
+
+
+	4.配置路由 （ index.js）
+
+		/  加载APP组件
+
+		/home   加载Home组件
+
+		/news  加载News组件
+
+
+
+		ReactDOM.render((
+		  <Router>
+		    <Route path="/" component={App}>
+		      <Route path="home" component={Home} />
+		      <Route path="news" component={Inbox}>     
+		      </Route>
+		    </Route>
+		  </Router>
+		), document.body)
+
+	5.配置 加载的组件 的显示的地方   （App.js）
+
+
+	  {this.props.children}
+
+	6.页面跳转 （组件的跳转）   (任何的组件里面都可以写)
+
+		 <ul>
+		  <li><Link to="/about">About</Link></li>
+		  <li><Link to="/inbox">Inbox</Link></li>
+		</ul>
+
+     7.Link动态传值
+
+     	<Link to={{pathname:'newscontent/'+this.state.aid,query:{name:'zhangsan'}}}>跳转新闻详情</Link>
+
+     8.获取动态传值
+
+     	 {this.props.params.aid}
+

@@ -1,0 +1,12 @@
+https://haimanchajian.com/jx3/search-mob?table=adventure&q=
+https://haimanchajian.com/jx3/search-mob?table=adventure&q=%E5%8F%8C%E5%89%91%E5%90%88%E7%92%A7
+https://haimanchajian.com/jx3/search-mob?table=item&q=%E5%94%90%E9%97%A8
+https://haimanchajian.com/jx3/search/suggest?table=item&q=tangmen
+
+http://www.jx3pve.com/api/server/list.php
+
+https://www.j3pz.com/data/prediction.json
+
+https://www.j3pz.com/api/equip?position=0&school=dujing
+
+https://www.j3pz.com/api/buff?school=dujing
