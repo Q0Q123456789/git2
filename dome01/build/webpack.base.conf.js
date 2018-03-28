@@ -41,6 +41,10 @@ module.exports = {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
+        test: require.resolve('zepto'),
+        loader: 'exports-loader?window.Zepto!script-loader'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig

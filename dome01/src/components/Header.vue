@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="app">
       <el-container>
-        <el-header><span class="img_logo" @click="getData"></span></el-header>
+        <el-header><span class="img_logo" @click="getXlsFromTbl('app','main')"></span></el-header>
         <el-container>
           <el-aside width="200px">
             <v-folding :list='list'></v-folding>
@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import $ from "zepto-webpack";
 import Folding from "./component/Folding.vue";
 import News from "./News.vue";
 // import Ajax from '../public/ajax.js'
@@ -29,15 +30,30 @@ export default {
     "v-news": News
   },
   mounted() {
-    // this.getData();
+    this.getData();
   },
   methods: {
     getData() {
-      this.$post("a").then(res => {
+      this.$get("b").then(res => {
         console.log(res);
         this.list = res.data;
-      });
+        this.put();
+      })
+      // this.$post("sid").then(res => {
+      //   console.log(res);
+      //   this.list = res.data;
+      //   this.put();
+      // })
     },
+    put(){
+      var params={
+          list:this.list
+      }
+      this.$post("sid",params).then(res => {
+        console.log(res);
+        this.list = res.data;
+      })
+    }
   }
 };
 </script>

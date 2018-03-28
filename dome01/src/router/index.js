@@ -11,6 +11,8 @@ import News from '@/components/News'
 
 Vue.prototype.$get = ajax.get
 Vue.prototype.$post = ajax.post
+Vue.prototype.$put = ajax.put
+Vue.prototype.$del = ajax.del
 Vue.prototype.$echarts = Echarts
 
 Vue.use(VueTouch, {
