@@ -7,7 +7,7 @@
             <v-folding :list='list'></v-folding>
           </el-aside>
           <el-main>
-            <v-news></v-news>
+            <v-news>111</v-news>
           </el-main>
         </el-container>
       </el-container>
@@ -47,9 +47,9 @@ export default {
     },
     put(){
       var params={
-          list:this.list
+          list:'adsad'
       }
-      this.$post("sid",params).then(res => {
+      this.$put("sid",params).then(res => {
         console.log(res);
         this.list = res.data;
       })
@@ -76,7 +76,6 @@ export default {
   background-color: #d3dce6;
   color: #333;
   text-align: center;
-  line-height: 200px;
 }
 
 .el-main {

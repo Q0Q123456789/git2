@@ -1,6 +1,10 @@
 <template>
-    <div>
-        <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+    <div id="folding">
+       <li class="" @click="onClick(1)">首页</li>
+       <li @click="onClick(2)">查看</li>
+       <li @click="onClick(3)">历史</li>
+       <li @click="onClick(4)">进程</li>
+       <li @click="onClick(5)">管理</li>
     </div>
 </template>
 <script>
@@ -9,79 +13,26 @@ export default {
   props: ["list"],
   data() {
     return {
-      data: [
-        {
-          label: "1",
-          children: [
-            {
-              label: "二级 1-1",
-              children: [
-                {
-                  label: "三级 1-1-1"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          label: "一级 2",
-          children: [
-            {
-              label: "二级 2-1",
-              children: [
-                {
-                  label: "三级 2-1-1"
-                }
-              ]
-            },
-            {
-              label: "二级 2-2",
-              children: [
-                {
-                  label: "三级 2-2-1"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          label: "一级 3",
-          children: [
-            {
-              label: "二级 3-1",
-              children: [
-                {
-                  label: "三级 3-1-1"
-                }
-              ]
-            },
-            {
-              label: "二级 3-2",
-              children: [
-                {
-                  label: "三级 3-2-1"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      defaultProps: {
-        children: "children",
-        label: "label"
-      }
+
     };
   },
   mounted() {
     console.log(this.list);
   },
   methods: {
-    handleNodeClick(data) {
-      console.log(data);
+    onClick(i){
+      console.log(i)
     }
   }
 };
 </script>
-<style scoped>
-
+<style lang="less" scoped>
+#folding{
+  li{
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+  }
+  
+}
 </style>

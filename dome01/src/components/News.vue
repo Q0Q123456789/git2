@@ -21,7 +21,7 @@ export default {
   methods: {
     initpost(){
       this.$post("activity").then(res => {
-        console.log(res.data);
+        console.log(res);
         this.list = res.data;
       })
     }
