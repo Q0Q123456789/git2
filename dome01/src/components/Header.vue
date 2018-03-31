@@ -17,6 +17,7 @@
 import $ from "zepto-webpack";
 import Folding from "./component/Folding.vue";
 import News from "./News.vue";
+import sha from "sha256";
 // import Ajax from '../public/ajax.js'
 export default {
   name: "Header",
@@ -31,6 +32,8 @@ export default {
   },
   mounted() {
     this.getData();
+    
+    console.log(sha("nihao"))
   },
   methods: {
     getData() {
