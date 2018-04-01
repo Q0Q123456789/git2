@@ -32,7 +32,6 @@ export default {
     height: 30px;
     line-height: 30px;
     cursor: pointer;
-    background: #fff;
   }
   
 }
