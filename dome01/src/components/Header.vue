@@ -7,7 +7,7 @@
             <v-folding :list='list'></v-folding>
           </el-aside>
           <el-main>
-            <v-news>111</v-news>
+            <v-news v-on:child-say="listenToMyBoy">111</v-news>
           </el-main>
         </el-container>
       </el-container>
@@ -31,8 +31,8 @@ export default {
     "v-news": News
   },
   mounted() {
-    this.getData();
-    
+    // this.getData();
+   
     console.log(sha("nihao"))
   },
   methods: {
@@ -56,6 +56,9 @@ export default {
         console.log(res);
         this.list = res.data;
       })
+    },
+    listenToMyBoy(id){
+      console.log(id)
     }
   }
 };

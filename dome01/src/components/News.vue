@@ -1,6 +1,7 @@
 <template>
-  <div id="main">
- 
+  <div id="main" >
+    <div @click="datalist()"> 111</div>
+
   </div>
 </template>
 <script>
@@ -16,7 +17,7 @@ export default {
   },
   mounted() {
     // this.drawLine();
-    this.initpost()
+    // this.initpost()
   },
   methods: {
     initpost(){
@@ -24,6 +25,10 @@ export default {
         console.log(res);
         this.list = res.data;
       })
+    },
+    datalist(){
+      // console.log(1)
+      this.$emit('child-say', 1)
     }
   }
 };
