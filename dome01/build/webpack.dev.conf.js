@@ -35,6 +35,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    //热更新？
+    stats: {
+      colors: true,
+      chunks: false
     }
   },
   plugins: [
@@ -48,7 +53,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      favicon: './logo.ico'
     }),
   ]
 })

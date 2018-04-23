@@ -13,7 +13,8 @@ var url = {
     h: 'https://www.j3pz.com/api/equip?position=0&school=',
     i: 'https://www.j3pz.com/api/buff?school=',
     activity: API + '/performance/model/activity',
-    sid: API + '/performance/model/sid'
+    sid: API + '/performance/model/sid',
+    cities: API + '/performance/model/cities'
   }
 }
 Ajax.interceptors.response.use(

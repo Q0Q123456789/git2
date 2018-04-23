@@ -4,10 +4,10 @@
         <el-header><span class="img_logo" @click="getXlsFromTbl('app','main')"></span></el-header>
         <el-container>
           <el-aside width="200px">
-            <v-folding :list='list'></v-folding>
+            <v-folding :list='list' v-on:changeState="changeState" ></v-folding>
           </el-aside>
           <el-main>
-            <v-news v-on:child-say="listenToMyBoy">111</v-news>
+            <v-news :msg='msg'></v-news>
           </el-main>
         </el-container>
       </el-container>
@@ -17,48 +17,41 @@
 import $ from "zepto-webpack";
 import Folding from "./component/Folding.vue";
 import News from "./News.vue";
-import sha from "sha256";
+import Home from "./Home.vue";
 // import Ajax from '../public/ajax.js'
 export default {
   name: "Header",
   data() {
     return {
-      list: []
+      list: [],
+      msg:''
     };
   },
   components: {
     "v-folding": Folding,
-    "v-news": News
+    "v-news": News,
+    "v-home": Home
   },
   mounted() {
     // this.getData();
-   
-    console.log(sha("nihao"))
   },
   methods: {
     getData() {
       this.$get("b").then(res => {
-        console.log(res);
         this.list = res.data;
         this.put();
       })
-      // this.$post("sid").then(res => {
-      //   console.log(res);
-      //   this.list = res.data;
-      //   this.put();
-      // })
     },
     put(){
       var params={
           list:'adsad'
       }
       this.$put("sid",params).then(res => {
-        console.log(res);
         this.list = res.data;
       })
     },
-    listenToMyBoy(id){
-      console.log(id)
+    changeState:function(data){
+      this.msg = data
     }
   }
 };
@@ -88,7 +81,6 @@ export default {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
 }
 
 body > .el-container {

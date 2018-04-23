@@ -184,8 +184,8 @@ input {
     color: purple;
 }
 
-.while {
-    color: while;
+.white {
+    color: white;
 }
 
 .green {
