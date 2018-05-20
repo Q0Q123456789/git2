@@ -6,6 +6,8 @@
           <el-aside width="200px">
             <router-link to="/Header/Home">首页</router-link>
             <router-link to="/Header/News">子页</router-link>
+            <router-link to="/Header/News">子页</router-link>
+            <router-link to="/Header/News">子页</router-link>
           </el-aside>
           <el-main>
             <router-view></router-view>
@@ -17,6 +19,7 @@
 <script>
 import $ from "zepto-webpack";
 import Folding from "./component/Folding.vue";
+
 // import Ajax from '../public/ajax.js'
 export default {
   name: "Header",
@@ -62,7 +65,7 @@ export default {
 }
 .el-header,
 .el-footer {
-  background-color: rgba(255, 0, 0, 0.534);
+  background: url("../assets/head_tmbg.png") repeat;
   color: #333;
   text-align: center;
   line-height: 60px;

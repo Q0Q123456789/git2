@@ -1,13 +1,5 @@
 <template>
   <div id="main">
-    <!-- <ul>
-      <li><span class="red pc-20">{{msg.abbr}}</span></li>
-      <li><span class="green">{{msg.id}}</span></li>
-      <li><span class="blue">{{msg.label}}</span></li>
-      <li><span class="purple">{{msg.latitude}}</span></li>
-      <li><span class="purple">{{msg.longitude}}</span></li>
-      <li><span class="grey">{{msg.pinyin}}</span></li>
-    </ul> -->
     <div class="input">
       <el-input placeholder="请输入内容" v-model="input" class="input-with-select">
          <el-select  v-model="select" slot="prepend" placeholder="请选择">
@@ -31,8 +23,8 @@ export default {
   data() {
     return {
       data: [],
-      input: '',
-      select: ''
+      input: "",
+      select: ""
     };
   },
   mounted() {
@@ -40,46 +32,35 @@ export default {
     // this.initpost()
   },
   methods: {
-    initpost(){
+    initpost() {
       this.$post("activity").then(res => {
         console.log(res);
         this.list = res.data;
-      })
+      });
     },
-    app:function(){
-      console.log(this.input)
-      console.log(this.select)
+    app: function() {
+      console.log(this.input);
+      console.log(this.select);
     }
-
   }
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
 #main {
   // width: 100%;
   height: 500px;
   border: 1px solid #000;
   background: #fff;
-  ul{
-    height: 100%;
-    li{
-      height: 25px;
-      background: #ccc;
-      span{
-        display: block;
-        height: 25px;
-      }
-    }
-  }
-  .input{
+  .input {
     width: 500px;
-    margin:10px ;
-  }
-  .el-select .el-input {
-    width: 130px;
-  }
-  .input-with-select .el-input-group__prepend {
-    background-color: #fff;
+    margin: 10px;
+    .el-input.el-input--suffix {
+      width: 100px;
+    }
+    .input-with-select .el-input-group__prepend {
+      background-color: #fff;
+    }
   }
 }
 </style>
+
