@@ -5,10 +5,10 @@
 </template>
 <script>
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
     return {
-      list: ''
+      list: ""
     };
   },
   components: {},
@@ -19,4 +19,25 @@ export default {
 <style lang="less" >
 #Home {
 }
+</style>
+<template>
+<div id=''>
+
+</div>
+</template>
+<script>
+export default {
+name: '',
+data() {
+return {
+
+};
+},
+components: {},
+mounted() {},
+methods: {}
+};
+</script>
+<style lang='less' >
+
 </style>
