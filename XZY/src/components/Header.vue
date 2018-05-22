@@ -1,13 +1,16 @@
 <template>
   <div id="app">
       <el-container>
-        <el-header><span class="img_logo" @click="getXlsFromTbl('app','main')"></span></el-header>
+        <el-header><span class="img_logo"></span></el-header>
         <el-container>
           <el-aside width="200px">
-            <router-link to="/Header/Home">首页</router-link>
-            <router-link to="/Header/News">子页</router-link>
-            <router-link to="/Header/News">子页</router-link>
-            <router-link to="/Header/News">子页</router-link>
+            <!-- <ul><li><router-link to="/">首页</router-link></li></ul> -->
+            <ul>
+              <li><router-link to="/Header/Home">首页</router-link></li>
+              <li><router-link to="/Header/News">子页</router-link></li>
+              <li><router-link to="/Header/News">子页</router-link></li>
+              <li><router-link to="/Header/News">子页</router-link></li>
+            </ul>
           </el-aside>
           <el-main>
             <router-view></router-view>
