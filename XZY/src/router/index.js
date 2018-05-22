@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import ElementUI from 'element-ui'
 import VueTouch from 'vue-touch'
 import Echarts from 'echarts'
+import Cookies from 'cookies-js'
 
 import ajax from '../public/ajax.js'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -25,6 +26,18 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    { path: '/', redirect:to => {
+      const cookies = Cookies.get('name')
+      if (to.path === '/') {
+        if (cookies) {
+          return '/Header/Home'
+        } else {
+          return '/Longin'
+        }
+      } else {
+
+      }
+    }},
     { path: '/Login', component: Login },
     {
       path: '/Header',
