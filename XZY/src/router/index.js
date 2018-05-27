@@ -26,9 +26,9 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', redirect:to => {
+    { path: '/*/*', redirect:to => {
       const cookies = Cookies.get('name')
-      if (to.path === '/') {
+      if (to.path === '/*/*') {
         if (cookies) {
           return '/Header/Home'
         } else {
