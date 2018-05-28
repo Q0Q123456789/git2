@@ -6,6 +6,7 @@ import Echarts from 'echarts'
 import Cookies from 'cookies-js'
 
 import ajax from '../public/ajax.js'
+
 import 'element-ui/lib/theme-chalk/index.css'
 import Login from '@/components/Login'
 import Header from '@/components/Header'
@@ -29,11 +30,7 @@ export default new Router({
   routes: [
     { path: '/*/*', redirect:to => {
       const cookies = Cookies.get('name')
-<<<<<<< HEAD
       if (to.path) {
-=======
-      if (to.path === '/*/*') {
->>>>>>> a5111179efc5cba339dbe5fd3a0c31850e21071d
         if (cookies) {
           return '/*/*'
         } else {

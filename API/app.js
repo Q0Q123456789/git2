@@ -1,11 +1,12 @@
 var express = require("express");
 var DB = require('./model/db.js');
+var config = require('./model/config.js');
 var ObjectId = require('mongodb').ObjectID;
-var Config=require("./model/config.js");
 
 var app = express(); /*实例化使用*/
 var fs = require("fs");
-// var app = express.Router();
+var SHA = require("js-sha1");
+// var router = express.Router();
 
 var bodyParser = require('body-parser');
 // 给app配置bodyParser中间件
@@ -23,99 +24,95 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-app.get('/performance/model/result', function (req, res) {
-  DB.find("result", {}, function (err, data) {
+app.get('/performance/model/list', function (req, res) {
+  DB.find("list", {}, function (err, data) {
       if (err) {
-        Config.obj = {
+        config.obj = {
           responseCode: "10008",
           responseMsg: err,
           data: null
         }
       } else {
-        Config.obj = {
+        config.obj = {
           responseCode: "10001",
           responseMsg: "请求成功！",
-          data:data
+          data
         }
       }
-      res.json(Config.obj);
+      res.json(config.obj);
   })
-});
-
+})
 app.post('/performance/model/list', function (req, res) {
+
     DB.find("list", {}, function (err, data) {
         if (err) {
-            Config.obj = {
+            config.obj = {
                 responseCode: "10008",
                 responseMsg: err,
                 data: null
             }
         } else {
-            Config.obj = {
+            config.obj = {
                 responseCode: "10001",
                 responseMsg: "请求成功！",
-                data:data
+                data
             }
         }
-        res.json(Config.obj);
+        res.json(config.obj);
     })
-});
+})
+//登录
+app.post('/performance/model/login.do', function (req, res) {
 
-app.get('/performance/model/login.do',function (req,res) {
-
-    DB.find("login", {username:req.query.username}, function (err, data) {
+    DB.find("login", {username: req.body.username}, function (err, data) {
         if (err) {
-            Config.obj = {
-                responseCode: "10008",
-                responseMsg: err,
-                data: null
-            };
+          config.obj = {
+              responseCode: "10008",
+              responseMsg: err
+          }
         } else {
-            if(data.length === 0){
-                Config.obj = {
-                    responseCode: "10002",
-                    responseMsg: "无效用户！",
-                    data: false
-                }
-            }else if(data[0].password !== req.query.password ){
-                Config.obj = {
-                    responseCode: "10002",
-                    responseMsg: "密码错误！",
-                    data: false
-                }
-            }else {
-                Config.obj = {
-                    responseCode: "10001",
-                    responseMsg: "请求成功！",
-                    data:data
-                }
+          if (data.length === 0) {
+            config.obj = {
+                responseCode: "10008",
+                responseMsg: "无效用户名！"
             }
+          } else if (data[0].password !== req.body.password ) {
+            config.obj = {
+                responseCode: "10008",
+                responseMsg: "密码错误！"
+            }
+          } else {
+            config.obj = {
+                responseCode: "10001",
+                responseMsg: "登录成功！",
+                data
+            }
+          }
+          DB.updateOne('login',{username: req.body.username},{ $set:{loginTime: new Date().toLocaleString() } } ,function (err , tiem){
+            console.log("文档更新成功");
+          })
         }
-        res.json(Config.obj);
+        res.json(config.obj);
     })
+})
 
-});
-
-app.post('/performance/model/activity', function (req, res) {
-
-});
 
 app.put('/performance/model/sid', function (req, res) {
     console.log(req.body);
-});
+})
 app.post('/performance/model/activity1', function (req, res) {
     DB.find("activity", {}, function (err, res1) {
         DB.find("classify", {}, function (err, res2) {
             DB.find("items", {}, function (err, res3) {
                 DB.find("list", {}, function (err, res4) {
                     if (err) {
-                        Config.obj = {
+                        config.obj = {
                             responseCode: "10008",
                             responseMsg: err,
                             data: null
-                        };
+                        }
                     } else {
-                        Config.obj = {
+                        config.obj = {
                             responseCode: "10001",
                             responseMsg: "请求成功！",
                             data:{
@@ -124,13 +121,13 @@ app.post('/performance/model/activity1', function (req, res) {
                                 res3,
                                 res4
                             }
-                        };
+                        }
                     }
-                    res.json(Config.obj);
+                    res.json(config.obj);
                 })
             })
         })
     })
-});
-app.listen(8081);
-console.log('Listening on port "欢迎来到英雄联盟！" 8081···')
+})
+app.listen(3000);
+console.log('Listening on port 3000...')

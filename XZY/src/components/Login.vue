@@ -51,11 +51,13 @@ export default {
     const mySwiper = new Swiper('.swiper-container', {
       autoplay: true //等同于以下设置
     });
+   
   },
   methods: {
     login:function(){
       var parent = {
-        login:SHA(this.$refs.name.value+this.$refs.password.value)
+        'username':this.$refs.name.value,
+        "password":this.$refs.password.value
       }
       this.$post('login',parent).then(res=>{
         console.log(res)
