@@ -4,7 +4,22 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+      return{
+
+      }
+  },
+  mounted(){
+    //   debugger
+      const cookies = this.$cookies.get('name')
+      if(!cookies){
+          this.$router.push({ path: '/Login' })
+      }
+  },
+  methods: {
+      
+  }
 }
 </script>
 

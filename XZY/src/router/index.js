@@ -17,6 +17,7 @@ Vue.prototype.$post = ajax.post
 Vue.prototype.$put = ajax.put
 Vue.prototype.$del = ajax.del
 Vue.prototype.$echarts = Echarts
+Vue.prototype.$cookies = Cookies
 
 Vue.use(VueTouch, {
   name: 'v-touch'
@@ -26,16 +27,16 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', redirect:to => {
+    { path: '/*/*', redirect:to => {
       const cookies = Cookies.get('name')
-      if (to.path === '/') {
+      if (to.path) {
         if (cookies) {
-          return '/Header/Home'
+          return '/*/*'
         } else {
-          return '/Longin'
+          return '/Login'
         }
       } else {
-
+        console.log(2)
       }
     }},
     { path: '/Login', component: Login },
@@ -43,7 +44,7 @@ export default new Router({
       path: '/Header',
       component: Header,
       children: [
-        { path: 'Home', component: Home },
+        { path: '/', component: Home },
         { path: 'News', component: News }
       ]
     },

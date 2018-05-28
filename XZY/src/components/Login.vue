@@ -9,21 +9,22 @@
   </div>
   <div class="logding"></div>
   <div class="login">
-    <div class="uasename">
+    <div class="username">
       <span class="name">用户名：</span>
-      <span><input type="name" placeholder="请输入账号"></span>
+      <span><input type="name" placeholder="请输入账号" ref="name" /></span>
     </div>
     <div class="password">
       <span class="name">密码：</span>
-      <span<input type="password" placeholder="请输入密码" ></span>
+      <span<input type="password" placeholder="请输入密码" ref="password" /></span>
     </div>
-    <div class="submin">登陆</div>
+    <div class="submin" @click="login()">登录</div>
   </div>
   <div class="logo"></div>
 </div>
 </template>
 <script>
 import Swiper from 'swiper';
+import SHA from 'js-sha1';
 import 'swiper/dist/css/swiper.min.css';
 export default {
   name: 'login',
@@ -51,7 +52,16 @@ export default {
       autoplay: true //等同于以下设置
     });
   },
-  methods: {}
+  methods: {
+    login:function(){
+      var parent = {
+        login:SHA(this.$refs.name.value+this.$refs.password.value)
+      }
+      this.$post('login',parent).then(res=>{
+        console.log(res)
+      }) 
+    }
+  }
 };
 </script>
 <style lang='less' >
@@ -68,7 +78,7 @@ export default {
     margin-left: -250px;
     margin-top: -150px;
     z-index: 10;
-    .uasename,
+    .username,
     .password {
       padding: 40px 20px;
     }

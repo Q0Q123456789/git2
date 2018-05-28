@@ -1,6 +1,6 @@
 import Ajax from 'axios'
 import qs from 'qs'
-var API = 'http://58.87.115.11:8081'
+var API = 'http://127.0.0.1:3000'
 var url = {
   api: {
     a: API + '/performance/model/list',
@@ -14,31 +14,31 @@ var url = {
     i: 'https://www.j3pz.com/api/buff?school=',
     activity: API + '/performance/model/activity',
     sid: API + '/performance/model/sid',
-    cities: API + '/performance/model/cities'
+    cities: API + '/performance/model/cities',
+    login: API + '/performance/model/login.do'
   }
 }
-Ajax.interceptors.response.use(
-  response => {
-    if (response.data.errCode === 2) {
-      router.push({
-        path: '/login',
-        query: {
-          redirect: router.currentRoute.fullPath
-        }
-      })
-    }
-    return response;
-  },
-  error => {
-    return Promise.reject(error.response.data)
-  })
+// Ajax.interceptors.response.use(
+//   response => {
+//     if (response.data.errCode === 2) {
+//       router.push({
+//         path: '/login',
+//         query: {
+//           redirect: router.currentRoute.fullPath
+//         }
+//       })
+//     }
+//     return response;
+//   },
+//   error => {
+//     return Promise.reject(error.response.data)
+//   }
+// )
 
 const ajax = {
   get: function (type, params) {
     return new Promise((resolve, reject) => {
-      Ajax.get(url.api[type], {
-        params: qs.stringify(params)
-      }).then((res) => {
+      Ajax.get(url.api[type], qs.stringify(params)).then((res) => {
         resolve(res.data)
       }).catch((cd) => {
         reject(cd)
