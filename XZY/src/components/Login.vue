@@ -2,7 +2,7 @@
 <div id='login'>
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="item in imgList">
+      <div class="swiper-slide" v-for="(item,index) in imgList">
         <img v-bind:src="item.url" alt="">
       </div>
     </div>
@@ -48,7 +48,7 @@ export default {
   },
   components: {},
   mounted() {
-    var mySwiper = new Swiper('.swiper-container', {
+    const mySwiper = new Swiper('.swiper-container', {
       autoplay: true //等同于以下设置
     });
   },

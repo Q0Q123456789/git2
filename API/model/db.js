@@ -19,7 +19,6 @@ function _connectDB(callback){
     //    }
     //    callback(err, db);
     //})
-
     MongoClient.connect(Config.DbUrl,function(err,db){
 
         if (err) {
@@ -27,6 +26,7 @@ function _connectDB(callback){
             callback(err, null);
             return;
         }
+        callback(err, db);
         callback(err, db);
         console.log('数据库连接成功...');
     })
@@ -129,7 +129,7 @@ exports.find=function (collectionName, json, C, D) {
                     //console.log(result);
                     //遍历完毕
                     db.close();
-                    callback(err,result)
+                    callback(err,result);
                 }
             });
 

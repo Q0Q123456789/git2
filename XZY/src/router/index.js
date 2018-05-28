@@ -29,7 +29,11 @@ export default new Router({
   routes: [
     { path: '/*/*', redirect:to => {
       const cookies = Cookies.get('name')
+<<<<<<< HEAD
       if (to.path) {
+=======
+      if (to.path === '/*/*') {
+>>>>>>> a5111179efc5cba339dbe5fd3a0c31850e21071d
         if (cookies) {
           return '/*/*'
         } else {
