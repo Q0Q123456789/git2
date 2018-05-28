@@ -18,5 +18,6 @@ export default {
 </script>
 <style lang="less" >
 #Home {
+ width: 100%;
 }
 </style>
