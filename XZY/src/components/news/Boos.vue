@@ -1,11 +1,18 @@
 <template>
-  <div>
-      <h1>超级账户管理员</h1>
+  <div id='boos'>
+
   </div>
 </template>
 <script>
-    
+export default {
+  name: "boos",
+  data() {
+    return {};
+  },
+  components: {},
+  mounted() {},
+  methods: {}
+};
 </script>
-<style lang="less">
-    
+<style lang='less' >
 </style>
