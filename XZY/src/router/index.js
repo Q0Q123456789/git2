@@ -19,6 +19,7 @@ Vue.prototype.$put = ajax.put
 Vue.prototype.$del = ajax.del
 Vue.prototype.$echarts = Echarts
 Vue.prototype.$cookies = Cookies
+Vue.prototype.$Router = Router
 
 Vue.use(VueTouch, {
   name: 'v-touch'
@@ -26,20 +27,8 @@ Vue.use(VueTouch, {
 Vue.use(ElementUI)
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
-    { path: '/*/*', redirect:to => {
-      const cookies = Cookies.get('name')
-      if (to.path) {
-        if (cookies) {
-          return '/*/*'
-        } else {
-          return '/Login'
-        }
-      } else {
-        console.log(2)
-      }
-    }},
     { path: '/Login', component: Login },
     {
       path: '/Header',
@@ -47,8 +36,34 @@ export default new Router({
       children: [
         { path: '/', component: Home },
         { path: 'News', component: News }
-      ]
+      ],
+      meta: {
+        title: '',
+        requireAuth: true  // 添加该字段，表示进入这个路由是需要登录的
+      }
     },
-    { path: '*', component: Header }
+    { path: '*',
+      component: Header,
+      meta: {
+        title: '',
+        requireAuth: true  // 添加该字段，表示进入这个路由是需要登录的
+      }
+    }
   ]
 })
+router.beforeEach((to, from, next) => {
+  let token = Cookies.get('key')
+  if (to.matched.some(record => record.meta.requireAuth)) { // 判断该路由是否需要登录权限
+    if (token) { // 判断当前的token是否存在
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: {redirect: to.fullPath} // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }
+  } else {
+    next()
+  }
+})
+export default router

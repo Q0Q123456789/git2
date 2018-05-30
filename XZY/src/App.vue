@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import Cookies from 'cookies-js'
 export default {
   name: 'app',
   data(){
@@ -11,11 +12,10 @@ export default {
       }
   },
   mounted(){
-    //   debugger
-      const cookies = this.$cookies.get('name')
-      if(!cookies){
-          this.$router.push({ path: '/Login' })
-      }
+    //   let cookies = Cookies.get('key')
+    //   if(!cookies){
+    //       this.$router.push({ path: '/Login' })
+    //   }
   },
   methods: {
       
