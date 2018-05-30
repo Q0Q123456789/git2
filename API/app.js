@@ -95,7 +95,25 @@ app.post('/performance/model/login.do', function (req, res) {
         res.json(config.obj);
     })
 })
-
+//添加用户
+app.post('/performance/model/addName.do',function ( req, res ) {
+    let params = {
+      username:req.body.username,
+      password:req.body.password,
+      addTime:new Date().toLocaleString(),
+      loginTime:'',
+      falseOne:true,
+      weight:'1',
+      sex:'M'
+    }
+    DB.insertOne('login',params,function ( err,data ) {
+      if(err)
+      console.log("添加失败！");
+      else
+      console.log("添加成功！");
+      res.json(data);
+    })
+})
 
 app.put('/performance/model/sid', function (req, res) {
     console.log(req.body);
@@ -130,4 +148,6 @@ app.post('/performance/model/activity1', function (req, res) {
     })
 })
 app.listen(3000);
+
+
 console.log('Listening on port 3000...')
