@@ -63,8 +63,10 @@ app.post('/performance/model/list', function (req, res) {
 })
 //登录
 app.post('/performance/model/login.do', function (req, res) {
-
+  DB.updateOne('login',{username: req.body.username},{ $set:{loginTime: new Date().toLocaleString() } } ,function (err , tiem){
+    console.log("文档更新成功");
     DB.find("login", {username: req.body.username}, function (err, data) {
+
         if (err) {
           config.obj = {
               responseCode: "10008",
@@ -88,31 +90,55 @@ app.post('/performance/model/login.do', function (req, res) {
                 data
             }
           }
-          DB.updateOne('login',{username: req.body.username},{ $set:{loginTime: new Date().toLocaleString() } } ,function (err , tiem){
-            console.log("文档更新成功");
-          })
         }
         res.json(config.obj);
     })
+  })
 })
 //添加用户
 app.post('/performance/model/addName.do',function ( req, res ) {
-    let params = {
-      username:req.body.username,
-      password:req.body.password,
-      addTime:new Date().toLocaleString(),
-      loginTime:'',
-      falseOne:true,
-      weight:'1',
-      sex:'M'
+
+  DB.find('login',{username: req.body.username}, function(err,data) {
+    if(err){
+      config.obj = {
+          responseCode: "10008",
+          responseMsg: err
+      }
+    } else if( data[0].username === req.body.username ){
+      config.obj = {
+          responseCode: "10008",
+          responseMsg: "账号已存在！"
+      }
+    } else if ( data[0].username !== req.body.username ) {
+      let params = {
+        username:req.body.username,
+        password:req.body.password,
+        addTime:new Date().toLocaleString(),
+        loginTime:'',
+        falseOne:true,
+        weight:'1',
+        sex:'M'
+      }
+      DB.insertOne('login',params,function ( err,data ) {
+        if(err) {
+          console.log("添加失败！");
+          config.obj = {
+              responseCode: "10008",
+              responseMsg: "添加失败！"
+          }
+        }else if (true) {
+          console.log("添加成功！");
+          config.obj = {
+              responseCode: "10001",
+              responseMsg: "添加成功！",
+              data
+          }
+        }
+      })
     }
-    DB.insertOne('login',params,function ( err,data ) {
-      if(err)
-      console.log("添加失败！");
-      else
-      console.log("添加成功！");
-      res.json(data);
-    })
+    res.json(config.obj);
+  })
+
 })
 
 app.put('/performance/model/sid', function (req, res) {
