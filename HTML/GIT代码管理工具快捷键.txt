@@ -12,9 +12,11 @@ $git reset                版本回退
 $git reset —hard 2044be7c回退到指定版本
 $git reflog               查看你执行过的命令记录
 $git push origin master   推送到远程仓库   
-$git push -u origin master第一次推送远程创库  
+$git push -u origin master第一次推送远程创库
+  
+net start MongoDB
 
-mongod --dbpath E:\mongo\data              启动
+mongod --dbpath E:\MongoDB\data\db         启动
 mongo                                      链接数据库
 show dbs 
 use   数据库名称                                列出所有数据库

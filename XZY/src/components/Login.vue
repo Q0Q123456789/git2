@@ -57,16 +57,15 @@ export default {
     login:function(){
       var parent = {
         'username':this.$refs.name.value,
-        "password":this.$refs.password.value
+        "password":SHA(this.$refs.password.value)
       }
       this.$post('login',parent).then(res=>{
-        console.log(res)
         if( res && res.responseCode === '10001' ){
             this.$message({
               message:res.responseMsg,
               type:'success'
             });
-            this.$cookies.set('key', JSON.stringify(res.data), { expires: 600 })
+            this.$cookies.set('key', JSON.stringify(res.data), { expires: 6000 })
             this.$router.push({ path: '/header' })
         } else if(res.responseCode === '10008') {
             this.$message.error(res.responseMsg);
