@@ -41,7 +41,7 @@ app.get('/performance/model/list', function (req, res) {
       }
       res.json(config.obj);
   })
-})
+});
 app.post('/performance/model/list', function (req, res) {
 
     DB.find("list", {}, function (err, data) {
@@ -60,7 +60,7 @@ app.post('/performance/model/list', function (req, res) {
         }
         res.json(config.obj);
     })
-})
+});
 //登录
 app.post('/performance/model/login.do', function (req, res) {
   DB.updateOne('login',{username: req.body.username},{ $set:{loginTime: new Date().toLocaleString() } } ,function (err , tiem){
@@ -94,7 +94,7 @@ app.post('/performance/model/login.do', function (req, res) {
         res.json(config.obj);
     })
   })
-})
+});
 //添加用户
 app.post('/performance/model/addName.do',function ( req, res ) {
 
@@ -118,7 +118,7 @@ app.post('/performance/model/addName.do',function ( req, res ) {
         falseOne:true,
         weight:'1',
         sex:'M'
-      }
+      };
       DB.insertOne('login',params,function ( err,data ) {
         if(err) {
           console.log("添加失败！");
@@ -139,11 +139,11 @@ app.post('/performance/model/addName.do',function ( req, res ) {
     res.json(config.obj);
   })
 
-})
+});
 
 app.put('/performance/model/sid', function (req, res) {
     console.log(req.body);
-})
+});
 app.post('/performance/model/activity1', function (req, res) {
     DB.find("activity", {}, function (err, res1) {
         DB.find("classify", {}, function (err, res2) {
@@ -172,8 +172,6 @@ app.post('/performance/model/activity1', function (req, res) {
             })
         })
     })
-})
+});
 app.listen(3000);
-
-
-console.log('Listening on port 3000...')
+console.log('Listening on port 3000...');

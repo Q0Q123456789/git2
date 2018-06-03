@@ -101,16 +101,17 @@ body > .el-container {
 ul>li{
   padding: 10px;
   background: rgba(25, 158, 216, 1);
+  position: relative; 
 }
 ul>li>a::after{
-  border: 10px solid transparent;
-  border-left: 10px solid #000;
   width: 0;
   height: 0;
+  border: 7px solid transparent;
+  border-left-color: orange;
   position: absolute;
-  top: 0;
-  right: -20px;
-  content: ' '
+  content: "";
+  margin-left: 30px;
+  margin-top: 3px;
 }
 </style>
 
