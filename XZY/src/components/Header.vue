@@ -64,11 +64,11 @@ export default {
   display: block;
   width: 200px;
   height: 60px;
-  background: url("../assets/logo.png") no-repeat;
+  background: url("../static/images/logo.png") no-repeat;
 }
 .el-header,
 .el-footer {
-  background: url("../assets/head_tmbg.png") repeat;
+  background: url("../static/images/head_tmbg.png") repeat;
   color: #333;
   text-align: center;
   line-height: 60px;

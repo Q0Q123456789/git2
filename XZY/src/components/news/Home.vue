@@ -70,7 +70,7 @@ export default {
    .head{
     width: 150px;
     height: 150px;
-    background: #fff url("../../../src/assets/timg.jpg") no-repeat 45% 100%;
+    background: #fff url("../../../src/static/images/timg.jpg") no-repeat 45% 100%;
     background-size: 100%;
     border-radius: 50%;
     float: left;
