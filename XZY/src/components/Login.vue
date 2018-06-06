@@ -2,8 +2,17 @@
 <div id='login'>
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="(item,index) in imgList">
-        <img v-bind:src="item.url" alt="">
+      <div class="swiper-slide">
+        <img src="../static/images/login1.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="../static/images/login2.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="../static/images/login3.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="../static/images/login4.jpg" alt="">
       </div>
     </div>
   </div>
@@ -30,20 +39,7 @@ export default {
   name: 'login',
   data() {
     return {
-      imgList: [
-        {
-          url: '../../src/assets/login1.jpg'
-        },
-        {
-          url: '../../src/assets/login2.jpg'
-        },
-        {
-          url: '../../src/assets/login3.jpg'
-        },
-        {
-          url: '../../src/assets/login4.jpg'
-        }
-      ]
+
     };
   },
   components: {},
@@ -135,7 +131,7 @@ export default {
   .logo{
     width: 200px;
     height: 55px;
-    background: red url('../../src/assets/logo.png');
+    background: red url('../../src/static/images/logo.png');
     margin:25px auto;
   }
 }
