@@ -13,6 +13,10 @@ $git reset —hard 2044be7c回退到指定版本
 $git reflog               查看你执行过的命令记录
 $git push origin master   推送到远程仓库   
 $git push -u origin master第一次推送远程创库
+
+nginx命令
+nginx     ---启动
+nginx -s reload  ---重启
   
 net start MongoDB
 
