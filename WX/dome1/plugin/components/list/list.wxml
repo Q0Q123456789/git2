@@ -1,0 +1,6 @@
+<view wx:for="{{list}}" wx:key="name">
+  <view>{{item.name}}:{{item.price}}</view>
+</view>
+<view>
+    <view>欢迎来到英雄联盟</view>
+</view>

@@ -1,0 +1,13 @@
+{
+	"client": "./client",
+	"svr": "./server",
+	"miniprogramRoot": "./client",
+	"qcloudRoot": "./server",
+	"setting": {
+		"newFeature": true
+	},
+	"appid": "wx7dc72467bf2118c0",
+	"projectname": "dome2",
+	"compileType": "miniprogram",
+	"condition": {}
+}
