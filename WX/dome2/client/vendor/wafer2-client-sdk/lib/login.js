@@ -15,6 +15,7 @@ function getWxLoginResult (cb) {
         success (loginResult) {
             wx.getUserInfo({
                 success (userResult) {
+                  console.log(userResult);
                     cb(null, {
                         code: loginResult.code,
                         encryptedData: userResult.encryptedData,
