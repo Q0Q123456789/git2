@@ -1,6 +1,6 @@
 import Ajax from 'axios'
 import qs from 'qs'
-var API = 'http://127.0.0.1:3000'
+var API = 'https://www.xiaomu1314.xin'
 var url = {
   api: {
     a: API + '/performance/model/list',

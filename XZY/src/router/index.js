@@ -28,14 +28,15 @@ Vue.use(ElementUI)
 Vue.use(Router)
 
 const router = new Router({
+  // mode: 'history',
   routes: [
     { path: '/Login', component: Login },
     {
-      path: '/Header',
+      path: '/',
       component: Header,
       children: [
         { path: '/', component: Home },
-        { path: 'News', component: News }
+        { path: '/News', component: News }
       ],
       meta: {
         title: '',

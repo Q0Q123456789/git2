@@ -6,10 +6,10 @@
           <el-aside width="200px">
             <!-- <ul><li><router-link to="/">首页</router-link></li></ul> -->
             <ul>
-              <li><router-link to="/Header">首页</router-link></li>
-              <li><router-link to="/Header/News">子页</router-link></li>
-              <li><router-link to="/Header/News">子页</router-link></li>
-              <li><router-link to="/Header/News">子页</router-link></li>
+              <li><router-link to="/">首页</router-link></li>
+              <li><router-link to="/News">子页</router-link></li>
+              <li><router-link to="/News">子页</router-link></li>
+              <li><router-link to="/News">子页</router-link></li>
             </ul>
           </el-aside>
           <el-main>
