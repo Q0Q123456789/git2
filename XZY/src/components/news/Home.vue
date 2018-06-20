@@ -1,18 +1,26 @@
 <template>
   <div id="Home">
     <div>
-      <div class="head"></div>
-      <div class="message">
-        <span class="name"><span>名　　称：</span><span>{{message.name}}</span></span>
-        <span class="time"><span>登录时间：</span><span>{{message.time}}</span></span>
-        <span class="identity"><span>权 限 组：</span><span>{{message.identity}}</span></span>
-        <span class="phone"><span>手 机 号：</span><span>{{message.phone}}</span></span>
+      <div class="left">
+        <div class="head"></div>
+        <div class="message">
+          <span class="name"><span>名　　称：</span><span>{{message.name}}</span></span>
+          <span class="time"><span>登录时间：</span><span>{{message.time}}</span></span>
+          <span class="identity"><span>权 限 组：</span><span>{{message.identity}}</span></span>
+          <span class="phone"><span>手 机 号：</span><span>{{message.phone}}</span></span>
+        </div>
+      </div>
+      <div class="right">
+        <span>修改密码</span>
       </div>
     </div>
-    <div class="addstorage"></div>
-    <div class="addstorage"></div>
-    <div class="addstorage"></div>
-    <div class="addstorage"></div>
+    <div class="password">
+      <div class="modify">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -64,7 +72,12 @@ export default {
 <style lang="less" >
 #Home {
  width: 100%;
+ height: 100%;
  div{
+   overflow: hidden;
+ }
+ .left{
+   float: left;
    width: 800px;
    height: 150px;
    .head{
@@ -88,6 +101,48 @@ export default {
      }
    }
  }
- 
+ .right{
+   width: 300px;
+   float: right;
+   span{
+     float: right;
+     width: 70px;
+     display: block;
+     padding: 5px 25px;
+     border:1px solid #ccc;
+     border-radius: 2px;
+     cursor: pointer;
+   }
+ }
+ .password{
+   width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 9;
+ }
+ .modify{
+   width: 300px;
+   height: 250px;
+   box-shadow: 1px 1px 10px #000;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   margin-left: -150px;
+   margin-top: -175px;
+   input{
+     width: 200px;
+     height: 25px;
+     border-radius: 5px;
+     margin: 10px 0;
+     padding: 2px 5px;
+    //  border: none;
+   }
+ }
 }
 </style>
