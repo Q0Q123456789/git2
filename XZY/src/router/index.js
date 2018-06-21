@@ -28,7 +28,7 @@ Vue.use(ElementUI)
 Vue.use(Router)
 
 const router = new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: [
     { path: '/Login', component: Login },
     {
