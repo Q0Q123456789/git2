@@ -14,6 +14,18 @@
         <el-button slot="append" icon="el-icon-search" @click="app()"></el-button>
       </el-input>
     </div>
+    <div class="">
+      <el-upload
+        class="upload-demo"
+        action="http://127.0.0.1:3000/performance/model/upload.do"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :file-list="fileList"
+        list-type="picture">
+        <el-button size="small" type="primary">点击上传</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
+    </div>
   </div>
 </template>
 <script>
@@ -24,23 +36,26 @@ export default {
     return {
       data: [],
       input: "",
-      select: ""
+      select: "",
+      fileList:[{
+        name:'',
+        url:''
+      }]
     };
   },
   mounted() {
-    // this.drawLine();
-    // this.initpost()
+
   },
   methods: {
-    initpost() {
-      this.$post("activity").then(res => {
-        console.log(res);
-        this.list = res.data;
-      });
-    },
     app: function() {
       console.log(this.input);
       console.log(this.select);
+    },
+    handleRemove(file, fileList) {
+        console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
     }
   }
 };

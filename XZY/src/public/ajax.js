@@ -1,9 +1,10 @@
 import Ajax from 'axios'
 import qs from 'qs'
-var API = 'https://www.xiaomu1314.xin'
+// var API = 'https://www.xiaomu1314.xin'
+var API = 'http://127.0.0.1:3000'
 var url = {
   api: {
-    a: API + '/performance/model/list',
+    a: API + '/performance/model/list.do',
     b: API + '/performance/model/result',
     c: 'https://haimanchajian.com/jx3/search-mob?table=adventure&q=',
     d: 'https://haimanchajian.com/jx3/search-mob?table=item&q=',

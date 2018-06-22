@@ -4,12 +4,10 @@
         <el-header><span class="img_logo"></span></el-header>
         <el-container>
           <el-aside width="200px">
-            <!-- <ul><li><router-link to="/">首页</router-link></li></ul> -->
             <ul>
               <li><router-link to="/">首页</router-link></li>
               <li><router-link to="/News">子页</router-link></li>
-              <li><router-link to="/News">子页</router-link></li>
-              <li><router-link to="/News">子页</router-link></li>
+              <li><router-link to="/Boos">子页</router-link></li>
             </ul>
           </el-aside>
           <el-main>
@@ -59,7 +57,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="less">
 .el-header span {
   display: block;
   width: 200px;
@@ -78,6 +76,8 @@ export default {
   background-color: #d3dce6;
   color: #333;
   text-align: center;
+  box-shadow: 2px  0  10px #ccc;
+  z-index: 1;
 }
 
 .el-main {
@@ -100,8 +100,12 @@ body > .el-container {
 }
 ul>li{
   padding: 10px;
-  background: rgba(25, 158, 216, 1);
+  background: rgba(255, 255, 255, 1);
   position: relative; 
+  a{
+    color: orange;
+  }
+ 
 }
 ul>li>a::after{
   width: 0;

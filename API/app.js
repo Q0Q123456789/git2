@@ -2,6 +2,7 @@ var express = require("express");
 var DB = require('./model/db.js');
 var config = require('./model/config.js');
 var ObjectId = require('mongodb').ObjectID;
+var multiparty = require('multiparty');
 
 var app = express(); /*实例化使用*/
 var fs = require("fs");
@@ -24,27 +25,38 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-app.get('/performance/model/list', function (req, res) {
-  DB.find("list", {}, function (err, data) {
-      if (err) {
-        config.obj = {
-          responseCode: "10008",
-          responseMsg: err,
-          data: null
+app.post('/performance/model/upload.do', function (req, res) {
+    let form = new multiparty.Form();
+    form.uploadDir = 'upload'; /*上传的目录*/
+    form.parse(req, function (err, fields, files) {
+        let param = {
+            name:files.file[0].originalFilename,
+            path:files.file[0].path,
+            headers:files.file[0].headers,
+            size:files.file[0].size
         }
-      } else {
-        config.obj = {
-          responseCode: "10001",
-          responseMsg: "请求成功！",
-          data
-        }
-      }
-      res.json(config.obj);
-  })
+        console.log(param);
+        DB.insertOne('images',param,function (err,data) {
+            if(err){
+                config.obj = {
+                    responseCode: "10008",
+                    responseMsg: err,
+                    data: null
+                }
+            }else {
+                config.obj = {
+                    responseCode: "10001",
+                    responseMsg: "上传成功！",
+                    data
+                }
+            }
+            res.json(config.obj);
+        })
+    })
 });
-app.post('/performance/model/list', function (req, res) {
+app.get('/performance/model/list.do', function (req, res) {
 
-    DB.find("list", {}, function (err, data) {
+    DB.find("images", {}, function (err, data) {
         if (err) {
             config.obj = {
                 responseCode: "10008",

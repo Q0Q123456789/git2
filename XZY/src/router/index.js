@@ -12,6 +12,7 @@ import Login from '@/components/Login'
 import Header from '@/components/Header'
 import Home from '@/components/news/Home'
 import News from '@/components/news/News'
+import Boos from '@/components/news/Boos'
 
 Vue.prototype.$get = ajax.get
 Vue.prototype.$post = ajax.post
@@ -36,7 +37,8 @@ const router = new Router({
       component: Header,
       children: [
         { path: '/', component: Home },
-        { path: '/News', component: News }
+        { path: '/News', component: News },
+        { path: '/Boos', component: Boos }
       ],
       meta: {
         title: '',

@@ -11,15 +11,20 @@
         </div>
       </div>
       <div class="right">
-        <span>修改密码</span>
+        <span  @click="initPassword(true)">修改密码</span>
       </div>
     </div>
-    <div class="password">
+    <div class="password" v-show="float">
       <div class="modify">
-        <input type="text">
-        <input type="text">
-        <input type="text">
+        <input type="text" placeholder="账号">
+        <input type="text" placeholder="密码">
+        <input type="text" placeholder="新密码">
+        <div>
+          <span class="confirm">确定</span><span class="cancel" @click="initPassword(false)">取消</span>
+        </div>
+        
       </div>
+      
     </div>
   </div>
 </template>
@@ -34,7 +39,8 @@ export default {
         time:'',
         identity:'',
         phone:''
-      }
+      },
+      float:false
     };
   },
   components: {},
@@ -64,6 +70,13 @@ export default {
         return '业务员';
         case "6":
         return '销售';
+      }
+    },
+    initPassword(n){
+      if(n){
+        this.float = true;
+      }else{
+        this.float = false;
       }
     }
   }
@@ -142,6 +155,18 @@ export default {
      margin: 10px 0;
      padding: 2px 5px;
     //  border: none;
+   }
+   div{
+     padding-top: 10px;
+     height: 30px;
+     line-height: 30px;
+     span{
+       padding: 5px 10px;
+       cursor: pointer;
+       border: 1px solid #000;
+       margin: 0 5px;
+       border-radius: 5px;
+     }
    }
  }
 }
