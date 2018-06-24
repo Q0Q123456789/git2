@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 // 通过如下配置再路由种处理request时，可以直接获得post请求的body部分
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use("/upload",express.static("upload"));
 //设置跨域访问
 app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -35,7 +35,6 @@ app.post('/performance/model/upload.do', function (req, res) {
             headers:files.file[0].headers,
             size:files.file[0].size
         }
-        console.log(param);
         DB.insertOne('images',param,function (err,data) {
             if(err){
                 config.obj = {
@@ -133,13 +132,11 @@ app.post('/performance/model/addName.do',function ( req, res ) {
       };
       DB.insertOne('login',params,function ( err,data ) {
         if(err) {
-          console.log("添加失败！");
           config.obj = {
               responseCode: "10008",
               responseMsg: "添加失败！"
           }
         }else if (true) {
-          console.log("添加成功！");
           config.obj = {
               responseCode: "10001",
               responseMsg: "添加成功！",
@@ -153,37 +150,26 @@ app.post('/performance/model/addName.do',function ( req, res ) {
 
 });
 
-app.put('/performance/model/sid', function (req, res) {
+//查询
+app.post('/performance/model/query.do',function (req,res) {
     console.log(req.body);
-});
-app.post('/performance/model/activity1', function (req, res) {
-    DB.find("activity", {}, function (err, res1) {
-        DB.find("classify", {}, function (err, res2) {
-            DB.find("items", {}, function (err, res3) {
-                DB.find("list", {}, function (err, res4) {
-                    if (err) {
-                        config.obj = {
-                            responseCode: "10008",
-                            responseMsg: err,
-                            data: null
-                        }
-                    } else {
-                        config.obj = {
-                            responseCode: "10001",
-                            responseMsg: "请求成功！",
-                            data:{
-                                res1,
-                                res2,
-                                res3,
-                                res4
-                            }
-                        }
-                    }
-                    res.json(config.obj);
-                })
-            })
-        })
+    let params = req.body.loginTime;
+    DB.find('login',{'loginTime':{$regex:params}},function (err,data) {
+        if(err){
+            config.obj = {
+                responseCode: "10008",
+                responseMsg: "添加失败！"
+            }
+        }else {
+            config.obj = {
+                responseCode: "10001",
+                responseMsg: "添加成功！",
+                data
+            }
+        }
+        res.json(config.obj);
     })
-});
+})
+
 app.listen(3000);
 console.log('Listening on port 3000...');

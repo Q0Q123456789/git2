@@ -1,16 +1,11 @@
 <template>
   <div id='boos'>
-      <el-row :gutter="20">
-        <el-col :span="6">
+      <el-row :gutter="20" >
+        <el-col :span="6" v-for="item in imgUrl" :key="item.id" >
           <div class="grid-content bg-purple">
-            1
+            <img v-bind:src="'http://127.0.0.1:3000/'+item.path" :alt="item.name">
           </div>
         </el-col>
-        <el-col :span="6"><div class="grid-content bg-purple" v-for="item in imgUrl">
-          <img v-bind:src="'http://127.0.0.1:3000/'+item.path" :alt="item.name">
-        </div></el-col>
-        <el-col :span="6"><div class="grid-content bg-purple">3</div></el-col>
-        <el-col :span="6"><div class="grid-content bg-purple">4</div></el-col>
       </el-row>
   </div>
 </template>

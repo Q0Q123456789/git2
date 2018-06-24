@@ -14,15 +14,16 @@
         <el-button slot="append" icon="el-icon-search" @click="app()"></el-button>
       </el-input>
     </div>
-    <div class="">
       <el-upload
         class="upload-demo"
+        ref="upload"
         action="http://127.0.0.1:3000/performance/model/upload.do"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :file-list="fileList"
-        list-type="picture">
-        <el-button size="small" type="primary">点击上传</el-button>
+        :auto-upload="false">
+        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>
     </div>
@@ -47,9 +48,8 @@ export default {
 
   },
   methods: {
-    app: function() {
-      console.log(this.input);
-      console.log(this.select);
+    submitUpload() {
+      this.$refs.upload.submit();
     },
     handleRemove(file, fileList) {
         console.log(file, fileList);
@@ -75,6 +75,9 @@ export default {
     .input-with-select .el-input-group__prepend {
       background-color: #fff;
     }
+  }
+  .upload-demo{
+    width: 500px;
   }
 }
 </style>
