@@ -1,15 +1,15 @@
-var express = require("express");
-var DB = require('./model/db.js');
-var config = require('./model/config.js');
-var ObjectId = require('mongodb').ObjectID;
-var multiparty = require('multiparty');
+let express = require("express");
+let DB = require('./model/db.js');
+let config = require('./model/config.js');
+let ObjectId = require('mongodb').ObjectID;
+let multiparty = require('multiparty');
 
-var app = express(); /*实例化使用*/
-var fs = require("fs");
-var SHA = require("js-sha1");
+let app = express(); /*实例化使用*/
+let fs = require("fs");
+let SHA = require("js-sha1");
 // var router = express.Router();
 
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 // 给app配置bodyParser中间件
 // 通过如下配置再路由种处理request时，可以直接获得post请求的body部分
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +24,7 @@ app.all('*', function (req, res, next) {
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
 });
-
+//上传图片w
 app.post('/performance/model/upload.do', function (req, res) {
     let form = new multiparty.Form();
     form.uploadDir = 'upload'; /*上传的目录*/
@@ -33,8 +33,9 @@ app.post('/performance/model/upload.do', function (req, res) {
             name:files.file[0].originalFilename,
             path:files.file[0].path,
             headers:files.file[0].headers,
-            size:files.file[0].size
-        }
+            size:files.file[0].size,
+            uploadTime:new Date().toLocaleString()
+        };
         DB.insertOne('images',param,function (err,data) {
             if(err){
                 config.obj = {
@@ -152,9 +153,10 @@ app.post('/performance/model/addName.do',function ( req, res ) {
 
 //查询
 app.post('/performance/model/query.do',function (req,res) {
-    console.log(req.body);
-    let params = req.body.loginTime;
-    DB.find('login',{'loginTime':{$regex:params}},function (err,data) {
+    // let uploadTime = req.body.uploadTime;
+    let name = req.body.name;
+    let icon_url = req.body.icon_url;
+    DB.find('menu',{'icon_url':{$regex:icon_url},'name':{$regex:name}},function (err,data) {
         if(err){
             config.obj = {
                 responseCode: "10008",
@@ -169,7 +171,7 @@ app.post('/performance/model/query.do',function (req,res) {
         }
         res.json(config.obj);
     })
-})
+});
 
 app.listen(3000);
 console.log('Listening on port 3000...');
