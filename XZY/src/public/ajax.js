@@ -1,7 +1,9 @@
 import Ajax from 'axios'
 import qs from 'qs'
-// var API = 'https://www.xiaomu1314.xin'
-var API = 'http://127.0.0.1:3000'
+import config from '../config/config.js'
+
+var API = config.Api
+
 var url = {
   api: {
     a: API + '/performance/model/list.do',

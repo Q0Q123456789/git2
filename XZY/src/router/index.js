@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ElementUI from 'element-ui'
+// import ElementUI from 'element-ui'
 import VueTouch from 'vue-touch'
 import Echarts from 'echarts'
 import Cookies from 'cookies-js'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
 
 import ajax from '../public/ajax.js'
 
@@ -25,7 +27,9 @@ Vue.prototype.$Router = Router
 Vue.use(VueTouch, {
   name: 'v-touch'
 })
-Vue.use(ElementUI)
+Vue.use(iView)
+// Vue.use(ElementUI)
+
 Vue.use(Router)
 
 const router = new Router({
