@@ -3,6 +3,7 @@ let DB = require('./model/db.js');
 let config = require('./model/config.js');
 let ObjectId = require('mongodb').ObjectID;
 let multiparty = require('multiparty');
+let cookie = require('cookie-parser');
 
 let app = express(); /*实例化使用*/
 let fs = require("fs");
@@ -17,8 +18,10 @@ app.use(bodyParser.json());
 app.use("/upload",express.static("upload"));
 //设置跨域访问
 app.all('*', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Cookie", '');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, MUserAgent, MToken, UID, set-cookie");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
   res.header("X-Powered-By", ' 3.2.1')
   res.header("Content-Type", "application/json;charset=utf-8");
@@ -55,7 +58,8 @@ app.post('/performance/model/upload.do', function (req, res) {
     })
 });
 app.get('/performance/model/list.do', function (req, res) {
-
+    console.log(req.headers);
+    console.log(res.headers);
     DB.find("images", {}, function (err, data) {
         if (err) {
             config.obj = {

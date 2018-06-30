@@ -51,22 +51,36 @@ export default {
   },
   methods: {
     login:function(){
+      let that = this;
       var parent = {
-        'username':this.$refs.name.value,
-        "password":SHA(this.$refs.password.value)
+        'username':that.$refs.name.value,
+        "password":SHA(that.$refs.password.value)
       }
-      this.$post('login',parent).then(res=>{
-        if( res && res.responseCode === '10001' ){
-            this.$message({
-              message:res.responseMsg,
-              type:'success'
-            });
-            this.$cookies.set('key', JSON.stringify(res.data), { expires: 6000 })
-            this.$router.push({ path: '/header' })
-        } else if(res.responseCode === '10008') {
-            this.$message.error(res.responseMsg);
-        }
-      }) 
+      // let parameter = {
+      //   api:'login',
+      //   method:'post'
+      // }
+      // this.$http(parameter,parent).then((res)=>{
+      //   that.$message({
+      //     message:res.responseMsg,
+      //     type:'success'
+      //   });
+      //   that.$cookies.set('key', JSON.stringify(res.data), { expires: 6000 })
+      //   that.$router.push({ path: '/' })
+      // },(err)=>{
+      //   that.$message.error(res.responseMsg);
+      // })
+      
+      // that.$post('login',parent,function(res){
+      //   that.$message({
+      //     message:res.responseMsg,
+      //     type:'success'
+      //   });
+      //   that.$cookies.set('key', JSON.stringify(res.data), { expires: 6000 })
+      //   that.$router.push({ path: '/' })
+      // },function(err){
+      //   that.$message.error(res.responseMsg);
+      // })
     }
   }
 };

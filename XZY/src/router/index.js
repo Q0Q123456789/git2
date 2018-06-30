@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import ElementUI from 'element-ui'
+import ElementUI from 'element-ui'
 import VueTouch from 'vue-touch'
 import Echarts from 'echarts'
 import Cookies from 'cookies-js'
-import iView from 'iview'
-import 'iview/dist/styles/iview.css'
 
 import ajax from '../public/ajax.js'
 
@@ -16,6 +14,7 @@ import Home from '@/components/news/Home'
 import News from '@/components/news/News'
 import Boos from '@/components/news/Boos'
 
+Vue.prototype.$http = ajax
 Vue.prototype.$get = ajax.get
 Vue.prototype.$post = ajax.post
 Vue.prototype.$put = ajax.put
@@ -27,8 +26,7 @@ Vue.prototype.$Router = Router
 Vue.use(VueTouch, {
   name: 'v-touch'
 })
-Vue.use(iView)
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 
 Vue.use(Router)
 
@@ -66,7 +64,7 @@ router.beforeEach((to, from, next) => {
     } else {
       next({
         path: '/login',
-        query: {redirect: to.fullPath} // 将跳转的路由path作为参数，登录成功后跳转到该路由
+        query: {redirect: to.query.redirect} // 将跳转的路由path作为参数，登录成功后跳转到该路由
       })
     }
   } else {

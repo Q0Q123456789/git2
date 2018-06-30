@@ -12,10 +12,7 @@ export default {
       }
   },
   mounted(){
-    //   let cookies = Cookies.get('key')
-    //   if(!cookies){
-    //       this.$router.push({ path: '/Login' })
-    //   }
+
   },
   methods: {
       
@@ -209,5 +206,9 @@ input {
 
 .hide {
     display: none;
+}
+img{
+    width: 100%;
+    height: 100%;
 }
 </style>

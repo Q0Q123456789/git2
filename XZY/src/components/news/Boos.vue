@@ -3,7 +3,7 @@
       <el-row :gutter="20" >
         <el-col :span="6" v-for="item in imgUrl" :key="item.id" >
           <div class="grid-content bg-purple">
-            <img v-bind:src="'http://127.0.0.1:3000/'+item.path" :alt="item.name">
+            <img v-bind:src="'http://127.0.0.1:3000/'+item.path" :alt="item.name" :title="item.name">
           </div>
         </el-col>
       </el-row>
@@ -22,12 +22,26 @@ export default {
     this.ajax()
   },
   methods: {
+    
     ajax(){
-      this.$get("a").then(res=>{
-        console.log(res)
-        this.imgUrl = res.data;
-        console.log(this.imgUrl)
+      var that = this
+      // this.$get("a",{},that.headers).then(res=>{
+      //   that.imgUrl = res.data;
+      // })
+      let parameter = {
+        api:'a',
+        method:'get'
+      }
+      this.$http(parameter).then((res)=>{
+        that.imgUrl = res.data;
+      },(err)=>{
+        console.log(err)
       })
+      // that.$post('a',{},function(res){
+      //   that.imgUrl = res.data;
+      // },function(err){
+      //   that.$message.error(res.responseMsg);
+      // })
     }
   }
 };
