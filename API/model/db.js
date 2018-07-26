@@ -1,24 +1,16 @@
 /**
  * Created by Administrator on 2017/3/3 0003.
  */
-var Mongo=require('mongodb');
+let Mongo=require('mongodb');
 
-var Config=require("./config.js")
+let Config=require("./config.js");
 
-var MongoClient=Mongo.MongoClient;
+let MongoClient=Mongo.MongoClient;
 
-var ObjectID=Mongo.ObjectID;
+let ObjectID=Mongo.ObjectID;
 
 /*连接数据库*/
 function _connectDB(callback){
-    //MongoClient.connect(Config.DbUrl,function(err,db){
-    //    if (err) {
-    //        console.log('数据库连接失败...');
-    //        callback(err, null);
-    //        return;
-    //    }
-    //    callback(err, db);
-    //})
     MongoClient.connect(Config.DbUrl,function(err,db){
 
         if (err) {
@@ -26,7 +18,6 @@ function _connectDB(callback){
             callback(err, null);
             return;
         }
-        callback(err, db);
         callback(err, db);
         console.log('数据库连接成功...');
     })
@@ -44,8 +35,7 @@ exports.count=function(collectionName,json,callback){
             db.close(); //关闭数据库
         })
     })
-
-}
+};
 
 /*插入数据*/
 exports.insertOne=function(collectionName,json,callback){
@@ -57,7 +47,7 @@ exports.insertOne=function(collectionName,json,callback){
         })
     })
 
-}
+};
 /*更新数据*/
 
 //修改一条
@@ -71,7 +61,7 @@ exports.updateOne = function (collectionName, json1, json2, callback) {
                 db.close();//关闭数据库
             });
     })
-}
+};
 //修改全部
 exports.updateMany=function (collectionName, json1, json2, callback) {
 
@@ -84,11 +74,11 @@ exports.updateMany=function (collectionName, json1, json2, callback) {
                 db.close();//关闭数据库
             });
     })
-}
+};
 // 查找
 exports.find=function (collectionName, json, C, D) {
 
-    var result = [];    //结果数组
+    let result = [];    //结果数组
     if (arguments.length == 3) {
         //那么参数C就是callback，参数D没有传。
         var callback = C;
@@ -117,7 +107,7 @@ exports.find=function (collectionName, json, C, D) {
                 return;
             }
             //var userRel=db.collection(collectionName).find(json);
-          var userRel=db.collection(collectionName).find(json).skip(skipnumber).limit(limit).sort(sort);;
+        var userRel=db.collection(collectionName).find(json).skip(skipnumber).limit(limit).sort(sort);;
             userRel.each(function(err, doc) {
                 if(err){
                     res.write("游标遍历错误");
@@ -135,7 +125,7 @@ exports.find=function (collectionName, json, C, D) {
 
     })
 
-}
+};
 
 //删除
 exports.deleteMany = function (collectionName, json, callback) {
@@ -149,4 +139,4 @@ exports.deleteMany = function (collectionName, json, callback) {
             }
         );
     });
-}
+};
