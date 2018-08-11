@@ -14,6 +14,10 @@ $git reflog               查看你执行过的命令记录
 $git push origin master   推送到远程仓库   
 $git push -u origin master第一次推送远程创库
 
+微信  
+AppID(小程序ID) wx7dc72467bf2118c0
+AppSecret(小程序密钥) 2e8eb647e46dff2a7eeba2568c9c0727
+
 nginx命令
 nginx     ---启动
 nginx -s reload  ---重启

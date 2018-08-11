@@ -1,0 +1,5 @@
+<!--pages/home/home.wxml-->
+<view id='home'>nihao
+  <view> 哈哈哈</view>
+</view>
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>

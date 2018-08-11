@@ -1,5 +1,5 @@
 let express = require("express");
-// let DB = require('./model/db.js');
+let DB = require('./model/db.js');
 let config = require('./model/config.js');
 // const log4js = require('log4js');
 // log4js.configure({
@@ -14,7 +14,7 @@ let config = require('./model/config.js');
 // LogFile.warn('log-dir is a configuration-item in the log4js.json');
 // LogFile.error('In This Test log-dir is : \'./logs/log_test/\'');
 
-// let ObjectId = require('mongodb').ObjectID;
+let ObjectId = require('mongodb').ObjectID;
 let multiparty = require('multiparty');
 // let cookie = require('cookie-parser');
 
@@ -22,12 +22,12 @@ let app = express(); /*实例化使用*/
 let fs = require("fs");
 let SHA = require("js-sha1");
 
-let Mongodb = require('./model/Mongodb.js');
-let DB = new Mongodb();
+// let Mongodb = require('./model/Mongodb.js');
+// let DB = new Mongodb({
+//     library:'list'
+// });
 
 let bodyParser = require('body-parser');
-// 给app配置bodyParser中间件
-// 通过如下配置再路由种处理request时，可以直接获得post请求的body部分
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/upload",express.static("upload"));
@@ -62,5 +62,9 @@ let query  = require('./api/query.js');
 app.post('/performance/model/query.do',query.query);
 app.get('/performance/model/images.do',query.images);
 
-app.listen(3000);
+app.get("/a", function(request, response){
+    response.send("hello!");
+});
+
+app.listen(8030);
 console.log('Listening on port 3000······');
