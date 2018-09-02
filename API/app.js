@@ -37,11 +37,11 @@ app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", req.headers.origin);
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Cookie", '');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, MUserAgent, MToken, UID, set-cookie");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, MUserAgent, MToken, UID, set-cookie,x-access-token,X-URL-PATH");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
   res.header("X-Powered-By", ' 3.2.1')
   res.header("Content-Type", "application/json;charset=utf-8");
-  next();
+  next()
 });
 //仓库
 let api  = require('./api/server.js');
@@ -52,6 +52,7 @@ app.post('/performance/model/find.do',api.find);
 let login  = require('./api/login.js');
 app.post('/performance/model/login.do',login.login);
 app.post('/performance/model/addName.do',login.addName);
+app.get('/performance/model/findUser.do',login.findUser);
 
 //上传图片
 let upload  = require('./api/upload.js');
@@ -65,6 +66,5 @@ app.get('/performance/model/images.do',query.images);
 app.get("/a", function(request, response){
     response.send("hello!");
 });
-
 app.listen(8030);
-console.log('Listening on port 3000······');
+console.log('Listening on port 8030······');
