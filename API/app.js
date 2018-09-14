@@ -1,6 +1,6 @@
 let express = require("express");
-let DB = require('./model/db.js');
-let config = require('./model/config.js');
+// let DB = require('./model/db.js');
+// let config = require('./model/config.js');
 // const log4js = require('log4js');
 // log4js.configure({
 //     appenders: { cheese: { type: 'file', filename: 'logs/cheese.log' }},
@@ -14,13 +14,13 @@ let config = require('./model/config.js');
 // LogFile.warn('log-dir is a configuration-item in the log4js.json');
 // LogFile.error('In This Test log-dir is : \'./logs/log_test/\'');
 
-let ObjectId = require('mongodb').ObjectID;
-let multiparty = require('multiparty');
+// let ObjectId = require('mongodb').ObjectID;
+// let multiparty = require('multiparty');
 // let cookie = require('cookie-parser');
 
 let app = express(); /*实例化使用*/
-let fs = require("fs");
-let SHA = require("js-sha1");
+// let fs = require("fs");
+// let SHA = require("js-sha1");
 
 // let Mongodb = require('./model/Mongodb.js');
 // let DB = new Mongodb({
@@ -34,7 +34,8 @@ app.use("/upload",express.static("upload"));
 
 //设置跨域访问
 app.all('*', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  // req.headers.origin
+  res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Cookie", '');
   res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, MUserAgent, MToken, UID, set-cookie,x-access-token,X-URL-PATH");
@@ -45,26 +46,26 @@ app.all('*', function (req, res, next) {
 });
 //仓库
 let api  = require('./api/server.js');
-app.post('/performance/model/warehousing.do',api.warehousing);
-app.post('/performance/model/find.do',api.find);
+app.post('/performance/model/warehousing',api.warehousing);
+app.post('/performance/model/find',api.find);
 
 //登录
 let login  = require('./api/login.js');
-app.post('/performance/model/login.do',login.login);
-app.post('/performance/model/addName.do',login.addName);
-app.get('/performance/model/findUser.do',login.findUser);
+app.post('/performance/model/login',login.login);
+app.post('/performance/model/addName',login.addName);
+app.get('/performance/model/findUser',login.findUser);
 
 //上传图片
 let upload  = require('./api/upload.js');
-app.post('/performance/model/upload.do',upload.upload);
+app.post('/performance/model/upload',upload.upload);
 
 //查询
 let query  = require('./api/query.js');
-app.post('/performance/model/query.do',query.query);
-app.get('/performance/model/images.do',query.images);
+app.post('/performance/model/query',query.query);
+app.get('/performance/model/images',query.images);
 
-app.get("/a", function(request, response){
-    response.send("hello!");
-});
+// app.get("/a", function(request, response){
+//     response.send("hello!");
+// });
 app.listen(8030);
 console.log('Listening on port 8030······');
