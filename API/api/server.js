@@ -21,35 +21,41 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.warehousing = function (req, res) {
-    let params = {
-        name:req.body.name,
-        model:req.body.model,
-        colorNumber:req.body.colorNumber,
-        number:req.body.number,
-        flieName:req.body.flieName,
-        flieUrl:req.body.flieUrl,
-        addTime:new Date().toLocaleString(),
-        loginTime:'',
-        Specifications:req.body.Specifications,
-        type:req.body.type
-    };
-    DB.insertOne("warehousing", params, function (err, data) {
-        if (err) {
-            config.obj = {
-                responseCode: "10008",
-                responseMsg: err,
-                data: null
+    let item = req.body;
+    for(let i = 0 ;i<item.length;i++){
+        let params = {
+            name:item[i].name,
+            model:item[i].model,
+            colorNumber:item[i].colorNumber,
+            number:item[i].number,
+            flieName:item[i].flieName,
+            flieUrl:item[i].flieUrl,
+            addTime:new Date().toLocaleString(),
+            purchaseTime:item[i].purchaseTime,
+            loginTime:'',
+            Specifications:item[i].Specifications,
+            type:item[i].type
+        };
+        DB.insertOne("warehousing", params, function (err, data) {
+            if (err) {
+                config.obj = {
+                    responseCode: "10008",
+                    responseMsg: err,
+                    data: null
+                }
+            } else {
+                config.obj = {
+                    responseCode: "10001",
+                    responseMsg: "请求成功！",
+                    data
+                }
             }
-        } else {
-            config.obj = {
-                responseCode: "10001",
-                responseMsg: "请求成功！",
-                data
+            if(item.length == (i+1)){
+                res.json(config.obj);
             }
-        }
-        res.json(config.obj);
-    })
-}
+        })
+    }
+};
 //详情
 app.find = function(req,res){
     DB.find("warehousing", {}, function (err, data) {
@@ -68,7 +74,7 @@ app.find = function(req,res){
         }
         res.json(config.obj);
     })
-}
+};
 
 module.exports = app;
 console.log('仓库-----加载成功');

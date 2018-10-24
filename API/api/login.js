@@ -44,7 +44,7 @@ app.login = function (req,res) {
                         data:{
                             token: Token
                         }
-                    }
+                    };
                     token = Token;
                 }
             }
@@ -55,9 +55,7 @@ app.login = function (req,res) {
 //添加用户
 app.addName = function (req,res) {
     const secret = req.body.password;
-    const password = crypto.createHmac('sha256', secret)
-        .update('I love cupcakes')
-        .digest('hex');
+    const password = common.sha256(secret);
     DB.find('login',{username: req.body.username}, function(err,data) {
         if(err){
             config.obj = {
@@ -80,12 +78,12 @@ app.addName = function (req,res) {
                 sex:'M'
             };
             DB.insertOne('login',params,function ( err,data ) {
-                if(err) {
+                if (err) {
                     config.obj = {
                         responseCode: "10008",
                         responseMsg: "添加失败！"
                     }
-                }else if (true) {
+                } else if (true) {
                     config.obj = {
                         responseCode: "10001",
                         responseMsg: "添加成功！",
@@ -105,7 +103,7 @@ app.findUser = function (req,res) {
                 responseCode: "10001",
                 responseMsg: "登录成功！",
                 data
-            }
+            };
             res.json(config.obj);
         })
     }
